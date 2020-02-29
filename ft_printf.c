@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/26 18:50:19 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/02/28 08:37:41 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/02/29 04:07:06 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void    get_wth(pf *a, t_flags *b, va_list *ap)
             }
             else if (ft_isalpha(*a->buff))
                 a->buff--;
+            else if (*a->buff == '.')
+                b->wth.state = 2;
         }
         else if (ft_isdigit(*a->buff) == 1)
         {
@@ -71,6 +73,8 @@ void    get_wth(pf *a, t_flags *b, va_list *ap)
             }
         }
     }
+    if (b->wth.value < 0)
+            b->wth.state = -1;
 }
 
 void    get_zero(pf *a,t_flags *b, va_list *ap)
@@ -90,7 +94,7 @@ void    get_zero(pf *a,t_flags *b, va_list *ap)
         else if (ft_isdigit(*a->buff) == 1)
         {
             b->zero.value = ft_atoi(a->buff);
-             i = count_int(b->zero.value);
+            i = count_int(b->zero.value);
             while (i != 1)
             {
                 a->buff++;
@@ -121,6 +125,8 @@ void    get_prec(pf *a, t_flags *b, va_list *ap)
                 a->buff++;
                 i--;
             }
+            if (b->prec.value == 0 && b->wth.state == 0)
+                b->wth.state = 2;
         }
         else if (ft_isalpha(*a->buff))
             a->buff--;
