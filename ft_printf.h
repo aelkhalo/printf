@@ -6,7 +6,7 @@
 /*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 16:09:37 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/02/22 03:11:51 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/02/29 11:02:36 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ void    get_wth(pf *a, t_flags *b, va_list *ap);
 void    get_zero(pf *a, t_flags *b, va_list *ap);
 void    get_prec(pf *a, t_flags *b, va_list *ap);
 void    c_handler(pf *a, t_flags *b, va_list *ap);
-void    s_handler(pf *a, va_list *ap);
+void    s_handler(pf *a, t_flags *b, va_list *ap);
 void    f_handler(pf *a, t_flags *b, va_list *ap);
 #endif

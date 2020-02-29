@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/26 18:50:19 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/02/29 04:07:06 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2020/02/29 09:06:43 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ void    get_zero(pf *a,t_flags *b, va_list *ap)
             a->buff++;
         if (*a->buff == '*')
             b->zero.value = va_arg(*ap, int);
-        if (*a->buff == '.')
+        else if (*a->buff == '.')
             a->buff++;
-        else if (ft_isdigit(*a->buff) == 1)
+        if (ft_isdigit(*a->buff) == 1)
         {
             b->zero.value = ft_atoi(a->buff);
             i = count_int(b->zero.value);
