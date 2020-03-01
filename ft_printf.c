@@ -6,7 +6,7 @@
 /*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/26 18:50:19 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/02/29 09:06:43 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/01 09:14:13 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void    get_flags(pf *a, t_flags *b, va_list *ap)
                 get_zero(a, b, ap);
             else if (*a->buff == '-' || *a->buff == '*' || ft_isdigit(*a->buff) == 1)
                 get_wth(a, b, ap);
-            else if (*a->buff == '.')
+            if (*a->buff == '.')
                 get_prec(a, b, ap);
             a->buff++;
         }

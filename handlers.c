@@ -6,7 +6,7 @@
 /*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 20:15:19 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/02/29 13:20:31 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/01 10:00:33 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,31 @@ void        d_handler(pf *a, t_flags *b, va_list *ap)
         b->wth.value = b->zero.value;
     }
     val = count_int(i);
+    if (b->wth.state == -1 && b->prec.value == 0 && b->prec.state && i == 0)
+        b->wth.state = 1;
     if (b->wth.value < 0 && b->prec.value < val)
         b->prec.value = 0;
+    
     if (b->prec.state && b->wth.value > b->prec.value && b->prec.value > 1 && b->wth.state == 1 && b->prec.value != val)
         b->wth.value += val;
     else if (b->prec.state && b->wth.value > b->prec.value && b->wth.state == 1 && b->prec.value != val)
         b->wth.value += val;
+    else if (b->wth.state == -1 && b->wth.value > val && !b->prec.value && b->prec.state)
+        b->wth.value += val;
+    
     if (val > b->prec.value && b->prec.value > 0 && b->wth.value == b->prec.value)
         b->wth.value = 0;
     else if (b->prec.value > b->wth.value && b->wth.value > 0)
         b->wth.value = 0;
-    if (b->wth.state == 1 && b->wth.value >= b->prec.value && b->prec.value > val && b->prec.state)
-        b->wth.value  -= b->prec.value;
+        
     if (b->wth.value > b->prec.value && b->prec.value < val && b->prec.state && b->wth.state)
         b->wth.value -= val;
+    else if (b->zero.state && b->zero.value == i && !b->prec.value && b->prec.state)
+        b->wth.value -= val;
+    else if (b->wth.state == 1 && b->wth.value >= b->prec.value && b->prec.value > val && b->prec.state)
+        b->wth.value  -= b->prec.value;
+    
+    
     if (b->wth.value < 0){
         b->wth.state = -1;
         b->wth.value *= -1;
@@ -120,83 +131,83 @@ void        d_handler(pf *a, t_flags *b, va_list *ap)
     }
 }
 
-void        s_handler(pf *a, t_flags *b, va_list *ap)
-{
-    int val;
-    int yes;
-    char    *s;
+// void        s_handler(pf *a, t_flags *b, va_list *ap)
+// {
+//     int val;
+//     int yes;
+//     char    *s;
     
-    yes = 0;
-    val = 0;
-    s = va_arg(*ap, char*);        
-    // if (b->prec.value < 0)
-    //     b->prec.state = 0;
-    // if (b->zero.state == 1 && b->prec.state == 1)
-    // {
-    //     b->zero.state = 0;
-    //     b->wth.state = 1;
-    //     b->wth.value = b->zero.value;
-    // }
-    val = ft_strlen(s);
-    if (val == 0)
-        s = NULL;
-    if (b->wth.value < 0 && b->prec.value < val)
-        b->prec.value = 0;
-    if (b->prec.state && b->wth.value > b->prec.value && b->prec.value > 1 && b->wth.state == 1 && b->prec.value != val)
-        b->wth.value += val;
-    else if (b->prec.state && b->wth.value > b->prec.value && b->wth.state == 1 && b->prec.value != val)
-        b->wth.value += val;
-    if (val > b->prec.value && b->prec.value > 0 && b->wth.value == b->prec.value)
-        b->wth.value = 0;
-    else if (b->prec.value > b->wth.value && b->wth.value > 0)
-        b->wth.value = 0;
-    if (b->wth.state == 1 && b->wth.value >= b->prec.value && b->prec.value > val && b->prec.state)
-        b->wth.value  -= b->prec.value;
-    if (b->wth.value > b->prec.value && b->prec.value < val && b->prec.state && b->wth.state)
-        b->wth.value -= val;
-    if (b->wth.value < 0){
-        b->wth.state = -1;
-        b->wth.value *= -1;
-    }
-    if (b->wth.state == 1)
-    {
-        print_spaces(&(*a), &(*b), val);
-        b->zero.value = b->prec.value;
-    }
-    if (yes)
-        ft_putchar('-');
-    if  (b->prec.state == 1 && b->prec.value > val)
-        print_spaces(&(*a), &(*b), val);
-    if (b->zero.state == 1 && b->zero.value > val)
-        print_spaces(&(*a), &(*b), val);
-    if (b->prec.value == 0 && b->zero.state == 0 && b->wth.state == 0 && b->prec.state)
-        a->lenght--;
-    else if (b->wth.state == 2)
-        a->lenght--;
-    else if (b->prec.state && !b->prec.value && b->wth.state && !b->wth.value)
-        a->lenght--;
-    else if (b->prec.value == 0 && b->prec.state == 1 && (b->wth.state == -1 || b->wth.state == 1 || b->wth.state == 0))
-        ft_putchar(' ');
-    int i = b->prec.value;
-    while (i)
-    {
-        ft_putchar(*s++);
-        i--;
-    }
-    if (b->wth.state == -1 && b->prec.state == 1 && b->prec.value > val)
-        b->wth.value -= b->prec.value - val ;
-    else if (b->wth.state == -1 && b->prec.value == 1 && b->prec.state)
-        b->wth.value = b->wth.value;
-    else if (b->wth.state == -1 && b->prec.value < val && b->prec.state && b->prec.value > 0)
-        b->wth.value += val;
-    if (b->wth.state == -1)
-        print_spaces(&(*a), &(*b), val);
-    while (val != 1)
-    {
-        a->lenght++;
-        val--;
-    }
-}
+//     yes = 0;
+//     val = 0;
+//     s = va_arg(*ap, char*);        
+//     // if (b->prec.value < 0)
+//     //     b->prec.state = 0;
+//     // if (b->zero.state == 1 && b->prec.state == 1)
+//     // {
+//     //     b->zero.state = 0;
+//     //     b->wth.state = 1;
+//     //     b->wth.value = b->zero.value;
+//     // }
+//     val = ft_strlen(s);
+//     if (val == 0)
+//         s = NULL;
+//     if (b->wth.value < 0 && b->prec.value < val)
+//         b->prec.value = 0;
+//     if (b->prec.state && b->wth.value > b->prec.value && b->prec.value > 1 && b->wth.state == 1 && b->prec.value != val)
+//         b->wth.value += val;
+//     else if (b->prec.state && b->wth.value > b->prec.value && b->wth.state == 1 && b->prec.value != val)
+//         b->wth.value += val;
+//     if (val > b->prec.value && b->prec.value > 0 && b->wth.value == b->prec.value)
+//         b->wth.value = 0;
+//     else if (b->prec.value > b->wth.value && b->wth.value > 0)
+//         b->wth.value = 0;
+//     if (b->wth.state == 1 && b->wth.value >= b->prec.value && b->prec.value > val && b->prec.state)
+//         b->wth.value  -= b->prec.value;
+//     if (b->wth.value > b->prec.value && b->prec.value < val && b->prec.state && b->wth.state)
+//         b->wth.value -= val;
+//     if (b->wth.value < 0){
+//         b->wth.state = -1;
+//         b->wth.value *= -1;
+//     }
+//     if (b->wth.state == 1)
+//     {
+//         print_spaces(&(*a), &(*b), val);
+//         b->zero.value = b->prec.value;
+//     }
+//     if (yes)
+//         ft_putchar('-');
+//     if  (b->prec.state == 1 && b->prec.value > val)
+//         print_spaces(&(*a), &(*b), val);
+//     if (b->zero.state == 1 && b->zero.value > val)
+//         print_spaces(&(*a), &(*b), val);
+//     if (b->prec.value == 0 && b->zero.state == 0 && b->wth.state == 0 && b->prec.state)
+//         a->lenght--;
+//     else if (b->wth.state == 2)
+//         a->lenght--;
+//     else if (b->prec.state && !b->prec.value && b->wth.state && !b->wth.value)
+//         a->lenght--;
+//     else if (b->prec.value == 0 && b->prec.state == 1 && (b->wth.state == -1 || b->wth.state == 1 || b->wth.state == 0))
+//         ft_putchar(' ');
+//     int i = b->prec.value;
+//     while (i)
+//     {
+//         ft_putchar(*s++);
+//         i--;
+//     }
+//     if (b->wth.state == -1 && b->prec.state == 1 && b->prec.value > val)
+//         b->wth.value -= b->prec.value - val ;
+//     else if (b->wth.state == -1 && b->prec.value == 1 && b->prec.state)
+//         b->wth.value = b->wth.value;
+//     else if (b->wth.state == -1 && b->prec.value < val && b->prec.state && b->prec.value > 0)
+//         b->wth.value += val;
+//     if (b->wth.state == -1)
+//         print_spaces(&(*a), &(*b), val);
+//     while (val != 1)
+//     {
+//         a->lenght++;
+//         val--;
+//     }
+// }
 
 void        print_zeros(pf *a, t_flags *b, int val)
 {
@@ -234,8 +245,8 @@ void        f_handler(pf *a, t_flags *b, va_list *ap)
     else if (*(a->buff) == 'c')
         c_handler(&(*a), &(*b), ap);
     
-    else if (*(a->buff) == 's')
-        s_handler(&(*a), &(*b), ap);
+    // else if (*(a->buff) == 's')
+    //     s_handler(&(*a), &(*b), ap);
     // else if (*(a->buff) == '%')
     // {
     //     ft_putchar('%');

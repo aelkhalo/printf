@@ -6,7 +6,7 @@
 /*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 16:09:37 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/02/29 11:02:36 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/01 07:35:02 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct t_flags
     t_flag wth;
     t_flag zero;
     t_flag prec;
+    t_flag min;
+    t_flag star;
 }           t_flags;
 
 void	ft_putchar(char c);
