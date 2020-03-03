@@ -6,7 +6,7 @@
 /*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 16:09:37 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/01 07:35:02 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/02 07:05:50 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 typedef struct pf
 {
-    int wth;
     char *buff;
     int lenght;
     char *flags;
@@ -36,8 +35,7 @@ typedef struct t_flags
     t_flag wth;
     t_flag zero;
     t_flag prec;
-    t_flag min;
-    t_flag star;
+    t_flag check;
 }           t_flags;
 
 void	ft_putchar(char c);
@@ -49,8 +47,10 @@ void    ft_handler(va_list *ap, pf *st);
 int     ft_isdigit(int c);
 int     ft_atoi(const char *str);
 int	    ft_isalpha(int c);
-void    get_in(t_flags *b);
+void    get_in(pf *a, t_flags *b);
 int		count_int(unsigned int n);
+void    get_wth_dig(pf *a, t_flags *b);
+void    get_wth_min(pf *a, t_flags *b, va_list *ap);
 void    print_zeros(pf *a, t_flags *b, int val);
 void    print_spaces(pf *a, t_flags *b, int val);
 void    get_wth(pf *a, t_flags *b, va_list *ap);
