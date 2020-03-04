@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 20:15:19 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/04 03:54:50 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2020/03/04 06:18:31 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void        c_handler(pf *a, t_flags *b, va_list *ap)
     if (b->wth.state == 1)
         print_spaces(&(*a), &(*b), val);
     ft_putchar(i);
-    if(b->wth.state == -1)
+    if (b->wth.state == -1)
         print_spaces(&(*a), &(*b), val);
 }
 
@@ -72,7 +72,7 @@ void        d_handler(pf *a, t_flags *b, va_list *ap)
             b->wth.value++;
         else if (b->min.value && i == 0 && b->prec.state && b->zero.value > b->prec.value && b->wth.state && b->wth.value < b->prec.value)
             b->wth.value++;
-        else if (b->min.value && i == 0 && b->prec.state && b->zero.value > b->prec.value && b->wth.state)
+        else if (b->min.value == 1 && i == 0 && b->prec.state && b->zero.value > b->prec.value && b->wth.state)
             b->wth.value++;
         print_spaces(&(*a), &(*b), val);
         b->zero.value = b->prec.value;
