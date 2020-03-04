@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 16:09:37 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/02 07:05:50 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/04 00:26:56 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct t_flags
     t_flag zero;
     t_flag prec;
     t_flag check;
+    t_flag min;
 }           t_flags;
 
 void	ft_putchar(char c);

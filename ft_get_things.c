@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_things.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 04:16:37 by elkhaluffy        #+#    #+#             */
-/*   Updated: 2020/03/02 07:08:12 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/04 02:09:17 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ void    get_wth_min(pf *a, t_flags *b, va_list *ap)
     if (*a->buff == '-')
     {
         b->wth.state = -1;
+        b->min.state = 1;
         while (*a->buff == '-')
             a->buff++;
         while (*a->buff == ' ')
-        a->buff++;
+            a->buff++;
         if (*a->buff == '*')
             b->wth.value = va_arg(*ap, int);
         else if (ft_isdigit(*a->buff) == 1)
@@ -77,6 +78,7 @@ void    get_zero(pf *a,t_flags *b, va_list *ap)
     if (*a->buff == '0')
     {
         b->zero.state = 1;
+        b->min.value = 1;
         a->buff++;
         while (*a->buff == ' ')
             a->buff++;
@@ -97,6 +99,8 @@ void    get_zero(pf *a,t_flags *b, va_list *ap)
         else if (ft_isalpha(*a->buff))
             a->buff--;
     }
+    if (!b->zero.value)
+        b->prec.state = 1;
 }
 
 void    get_prec(pf *a, t_flags *b, va_list *ap)

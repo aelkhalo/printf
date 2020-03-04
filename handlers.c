@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 20:15:19 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/03 19:58:15 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/04 03:54:50 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,21 @@ void        d_handler(pf *a, t_flags *b, va_list *ap)
     i = va_arg(*ap, int);
     yes = 0;
     ex = 0;
-    if (b->wth.value < 0){
+    if (b->min.state && i == 0 && b->prec.state)
+        b->wth.state = 1;
+    if (b->min.value && i > 0 && b->prec.state && b->zero.value > b->prec.value)
+        b->zero.value = 0;
+    if (b->wth.value < 0)
+    {
         b->wth.state = -1;
         b->wth.value *= -1;
     }
+    if (i < 0 && b->zero.state)
+        b->zero.value -= 1;
     if (i < 0 && (yes += 1 || 1))
     {
+        if (b->wth.value == b->prec.value)
+            b->wth.value += 1;
         i *= -1;
         b->wth.value -= 1;
         a->lenght++;
@@ -54,11 +63,23 @@ void        d_handler(pf *a, t_flags *b, va_list *ap)
     if (b->wth.state == 1 && b->wth.value >= b->prec.value && b->prec.value > val && b->prec.state)
     {
         b->wth.value += val;
-        b->wth.value  -= b->prec.value;
+        b->wth.value -= b->prec.value;
+        b->check.state = 1;
     }
     if (b->wth.state == 1 && b->prec.value < b->wth.value)
     {
-        if (b->wth.value == 1 && b->wth.state && b->zero.value == 0 && i == 0 && b->prec.value == 0 && b->prec.state)
+        if (b->wth.value > 0 && b->wth.state && b->zero.value == 0 && i == 0 && b->prec.value == 0 && b->prec.state)
+            b->wth.value++;
+        else if (b->min.value && i == 0 && b->prec.state && b->zero.value > b->prec.value && b->wth.state && b->wth.value < b->prec.value)
+            b->wth.value++;
+        else if (b->min.value && i == 0 && b->prec.state && b->zero.value > b->prec.value && b->wth.state)
+            b->wth.value++;
+        print_spaces(&(*a), &(*b), val);
+        b->zero.value = b->prec.value;
+    }
+    else if (b->wth.state && b->prec.value > b->wth.value && b->check.state == 1)
+    {
+        if (b->wth.value > 0 && b->wth.state && b->zero.value == 0 && i == 0 && b->prec.value == 0 && b->prec.state)
             b->wth.value++;
         print_spaces(&(*a), &(*b), val);
         b->zero.value = b->prec.value;
@@ -69,7 +90,7 @@ void        d_handler(pf *a, t_flags *b, va_list *ap)
         ft_putchar('-');
     if (val > b->prec.value && b->prec.value > 0 && b->wth.value == b->prec.value)
         b->wth.value = 0;
-    else if (b->prec.value > b->wth.value && b->wth.value > 0)
+    else if (b->prec.value >= b->wth.value && b->wth.value > 0)
         b->wth.value = 0;
     if (b->prec.state == 1 && b->prec.value > val)
         print_zeros(&(*a), &(*b), val);
@@ -77,8 +98,10 @@ void        d_handler(pf *a, t_flags *b, va_list *ap)
     {
         print_zeros(&(*a), &(*b), val);
     }
-    if (b->wth.value == 0 && b->zero.value == 0 && i == 0 && b->prec.value == 0 && b->prec.state)
+    if (b->zero.value == 0 && i == 0 && b->prec.value == 0 && b->prec.state)
     {
+        if (b->wth.value > 0)
+            b->wth.value++;
         ex = 1;
         a->lenght--;
     }
