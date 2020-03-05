@@ -6,7 +6,7 @@
 /*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 20:15:19 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/04 06:18:31 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/05 18:54:58 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,14 @@ void        d_handler(pf *a, t_flags *b, va_list *ap)
     if (b->min.state && i == 0 && b->prec.state)
         b->wth.state = 1;
     if (b->min.value && i > 0 && b->prec.state && b->zero.value > b->prec.value)
+    {
         b->zero.value = 0;
+        b->wth.state = 1;
+    }
+    else if (b->min.value && i > 0 && b->prec.state && b->check.state < b->prec.value)
+        b->wth.state = 1;
+    if (b->min.value && i < 0 && b->prec.state && b->check.state < b->prec.value)
+        b->zero.value += 1;
     if (b->wth.value < 0)
     {
         b->wth.state = -1;
@@ -95,9 +102,7 @@ void        d_handler(pf *a, t_flags *b, va_list *ap)
     if (b->prec.state == 1 && b->prec.value > val)
         print_zeros(&(*a), &(*b), val);
     else if (b->zero.state  && b->zero.value > val)
-    {
         print_zeros(&(*a), &(*b), val);
-    }
     if (b->zero.value == 0 && i == 0 && b->prec.value == 0 && b->prec.state)
     {
         if (b->wth.value > 0)

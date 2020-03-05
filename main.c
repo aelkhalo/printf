@@ -6,7 +6,7 @@
 /*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 22:39:23 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/04 06:15:48 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/05 18:50:31 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int main()
     // s = ft_printf("|%*.*d|\n",10, 9, 0);
     // r =    printf("|%*.*d|\n",10, 9, 0);
     // printf("\n%d\n%d\n\n", s, r);
-    s = ft_printf("|%*.*d|\n",5, -15, 0);
-    r =    printf("|%*.*d|\n",5, -15, 0);
+    s = ft_printf("|%02.7d|\n", -100);
+    r =    printf("|%02.7d|\n", -100);
     printf("\n%d\n%d\n\n", s, r);
     
     // s = ft_printf("|%0*.d|\n", -5, -65);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_things.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 04:16:37 by elkhaluffy        #+#    #+#             */
-/*   Updated: 2020/03/04 02:09:17 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2020/03/05 18:30:00 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,12 @@ void    get_prec(pf *a, t_flags *b, va_list *ap)
         else if (ft_isalpha(*a->buff))
             a->buff--;
     }
+    
     if (b->zero.state)
+    {
+        b->check.state = b->zero.value;
         b->wth.value = b->zero.value;
+    }
     if (b->wth.value < b->prec.value)
         b->zero.value = b->prec.value;
 }
