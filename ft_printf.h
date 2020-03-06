@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 16:09:37 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/04 00:26:56 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2020/03/06 18:13:28 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct t_flags
 
 void	ft_putchar(char c);
 size_t	ft_strlen(const char *s);
-void	ft_putstr(char *str);
+void	ft_putstr(char *str , int val, pf *a);
 int     ft_printf(const char *str, ...);
 void	ft_putnbr(int nb);
 void    ft_handler(va_list *ap, pf *st);
@@ -54,6 +54,7 @@ void    get_wth_dig(pf *a, t_flags *b);
 void    get_wth_min(pf *a, t_flags *b, va_list *ap);
 void    print_zeros(pf *a, t_flags *b, int val);
 void    print_spaces(pf *a, t_flags *b, int val);
+void    print_s_spaces(pf *a, t_flags *b);
 void    get_wth(pf *a, t_flags *b, va_list *ap);
 void    get_zero(pf *a, t_flags *b, va_list *ap);
 void    get_prec(pf *a, t_flags *b, va_list *ap);

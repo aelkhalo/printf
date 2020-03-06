@@ -6,7 +6,7 @@
 /*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 04:16:37 by elkhaluffy        #+#    #+#             */
-/*   Updated: 2020/03/05 18:30:00 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/06 08:27:24 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void    get_zero(pf *a,t_flags *b, va_list *ap)
         if (*a->buff == '*')
             b->zero.value = va_arg(*ap, int);
         else if (*a->buff == '.')
-            a->buff++;
+            get_prec(a, b, ap);
         if (ft_isdigit(*a->buff) == 1)
         {
             b->zero.value = ft_atoi(a->buff);
@@ -99,7 +99,7 @@ void    get_zero(pf *a,t_flags *b, va_list *ap)
         else if (ft_isalpha(*a->buff))
             a->buff--;
     }
-    if (!b->zero.value)
+    if (b->zero.value == 0)
         b->prec.state = 1;
 }
 
@@ -126,12 +126,13 @@ void    get_prec(pf *a, t_flags *b, va_list *ap)
         else if (ft_isalpha(*a->buff))
             a->buff--;
     }
-    
-    if (b->zero.state)
+    if (b->zero.state == 1)
     {
         b->check.state = b->zero.value;
         b->wth.value = b->zero.value;
+        b->wth.state = 1;
     }
+
     if (b->wth.value < b->prec.value)
         b->zero.value = b->prec.value;
 }
