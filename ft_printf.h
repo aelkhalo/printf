@@ -6,7 +6,7 @@
 /*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 16:09:37 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/06 18:13:28 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/07 16:09:52 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ typedef struct pf
 
 typedef struct t_flag
 {
-    int value;
-    int state;
+    int v;
+    int s;
 }           t_flag;
 
 typedef struct t_flags
@@ -61,4 +61,16 @@ void    get_prec(pf *a, t_flags *b, va_list *ap);
 void    c_handler(pf *a, t_flags *b, va_list *ap);
 void    s_handler(pf *a, t_flags *b, va_list *ap);
 void    f_handler(pf *a, t_flags *b, va_list *ap);
+void    check_s_hand(pf *a, t_flags *b, int val);
+void    check_s_hand1(pf *a, t_flags *b, int val);
+void    check_s_hand2(pf *a, t_flags *b, int val, char *s);
+void    check_d_hand(pf *a, t_flags *b, int val, int i);
+void    check_d_hand1(pf *a, t_flags *b, int val, int i);
+void    check_d_hand2(pf *a, t_flags *b, int val, int ex, int i);
+void    check_d_hand0(t_flags *b, int i);
+void    check_d_norme(pf *a, t_flags *b, int val ,int i);
+void    cal_lenght(pf *a, int val);
+void    perc_handler(pf *a, t_flags *b);
+void    check_perc_hand(pf *a, t_flags *b, int val, char s);
+void	ft_putperc(char s, pf *a);
 #endif

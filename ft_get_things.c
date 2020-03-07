@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_things.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 04:16:37 by elkhaluffy        #+#    #+#             */
-/*   Updated: 2020/03/06 22:59:27 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2020/03/07 16:47:29 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ void    get_wth_min(pf *a, t_flags *b, va_list *ap)
 {
     if (*a->buff == '-')
     {
-        b->wth.state = -1;
-        b->min.state = 1;
+        b->wth.s = -1;
+        b->min.s = 1;
         while (*a->buff == '-')
             a->buff++;
         while (*a->buff == ' ')
             a->buff++;
         if (*a->buff == '*')
-            b->wth.value = va_arg(*ap, int);
+            b->wth.v = va_arg(*ap, int);
         else if (ft_isdigit(*a->buff) == 1)
         {
-            b->wth.value = ft_atoi(a->buff);
+            b->wth.v = ft_atoi(a->buff);
             while (ft_isdigit(*a->buff))
                 a->buff++;
             a->buff--;
@@ -34,7 +34,7 @@ void    get_wth_min(pf *a, t_flags *b, va_list *ap)
         else if (ft_isalpha(*a->buff))
             a->buff--;
         // else if (*a->buff == '.')
-        //     b->wth.state = 2;
+        //     b->wth.s = 2;
     }
 }
 
@@ -45,8 +45,8 @@ void    get_wth_dig(pf *a, t_flags *b)
     i = 0;
     if (ft_isdigit(*a->buff) == 1)
     {
-        b->wth.value = ft_atoi(a->buff);
-        i = count_int(b->wth.value);
+        b->wth.v = ft_atoi(a->buff);
+        i = count_int(b->wth.v);
         while (i != 1)
         {
             a->buff++;
@@ -59,16 +59,16 @@ void    get_wth(pf *a, t_flags *b, va_list *ap)
 {   
     if (*a->buff == '-' || *a->buff == '*' || ft_isdigit(*a->buff))
     {
-        b->wth.state = 1;
+        b->wth.s = 1;
         if (*a->buff == '*')
-            b->wth.value = va_arg(*ap, int);
+            b->wth.v = va_arg(*ap, int);
         else if (*a->buff == '-')
             get_wth_min(a, b, ap);
         else if (ft_isdigit(*a->buff) == 1)
             get_wth_dig(a, b);
     }
-    if (b->wth.value < 0)
-        b->wth.state = -1;
+    if (b->wth.v < 0)
+        b->wth.s = -1;
 }
 
 void    get_zero(pf *a,t_flags *b, va_list *ap)
@@ -77,19 +77,19 @@ void    get_zero(pf *a,t_flags *b, va_list *ap)
     
     if (*a->buff == '0')
     {
-        b->zero.state = 1;
-        b->min.value = 1;
+        b->zero.s = 1;
+        b->min.v = 1;
         a->buff++;
         while (*a->buff == ' ')
             a->buff++;
         if (*a->buff == '*')
-            b->zero.value = va_arg(*ap, int);
+            b->zero.v = va_arg(*ap, int);
         else if (*a->buff == '.')
             get_prec(a, b, ap);
         if (ft_isdigit(*a->buff) == 1)
         {
-            b->zero.value = ft_atoi(a->buff);
-            i = count_int(b->zero.value);
+            b->zero.v = ft_atoi(a->buff);
+            i = count_int(b->zero.v);
             while (i != 1)
             {
                 a->buff++;
@@ -99,8 +99,8 @@ void    get_zero(pf *a,t_flags *b, va_list *ap)
         else if (ft_isalpha(*a->buff))
             a->buff--;
     }
-    if (b->zero.value == 0)
-        b->prec.state = 1;
+    if (b->zero.v == 0)
+        b->prec.s = 1;
 }
 
 void    get_prec(pf *a, t_flags *b, va_list *ap)
@@ -109,14 +109,16 @@ void    get_prec(pf *a, t_flags *b, va_list *ap)
     
     if (*a->buff == '.')
     {
-        b->prec.state = 1;
+        b->prec.s = 1;
         a->buff++;
+        while (*a->buff == '0')
+            a->buff++;
         if (*a->buff == '*')
-            b->prec.value = va_arg(*ap, int);
+            b->prec.v = va_arg(*ap, int);
         else if (ft_isdigit(*a->buff) == 1)
         {
-            b->prec.value = ft_atoi(a->buff);
-            i = count_int(b->prec.value);
+            b->prec.v = ft_atoi(a->buff);
+            i = count_int(b->prec.v);
             while (i != 1)
             {
                 a->buff++;
@@ -125,14 +127,15 @@ void    get_prec(pf *a, t_flags *b, va_list *ap)
         }
         else if (ft_isalpha(*a->buff))
             a->buff--;
+        else if (*a->buff == '%')
+            a->buff--;
     }
-    if (b->zero.state == 1)
+    if (b->zero.s == 1)
     {
-        b->check.state = b->zero.value;
-        b->wth.value = b->zero.value;
-        b->wth.state = 1;
+        b->check.s = b->zero.v;
+        b->wth.v = b->zero.v;
+        b->wth.s = 1;
     }
-
-    if (b->wth.value < b->prec.value)
-        b->zero.value = b->prec.value;
+    if (b->wth.v < b->prec.v)
+        b->zero.v = b->prec.v;
 }

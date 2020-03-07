@@ -6,7 +6,7 @@
 /*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/14 19:24:56 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/06 19:35:59 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/07 06:22:06 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ void	ft_putstr(char *str , int val , pf *a)
 		i++;
 		val--;
 		a->lenght++;
+		if (val < 0)
+			break ;
 	}
 }

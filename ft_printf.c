@@ -6,7 +6,7 @@
 /*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/26 18:50:19 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/02 06:41:57 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/07 16:38:23 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,16 @@ void    get_flags(pf *a, t_flags *b, va_list *ap)
 
 void    get_in(pf *a, t_flags *b)
 {
-    b->wth.state = 0;
-    b->wth.value = 0;
-    b->zero.state = 0;
-    b->zero.value = 0;
-    b->prec.state = 0;
-    b->prec.value = 0;
+    b->wth.s = 0;
+    b->wth.v = 0;
+    b->zero.s = 0;
+    b->zero.v = 0;
+    b->prec.s = 0;
+    b->prec.v = 0;
+    b->min.s = 0;
+    b->min.v = 0;
+    b->check.s = 0;
+    b->check.v = 0;
     a->lenght = 0;
 }
 
