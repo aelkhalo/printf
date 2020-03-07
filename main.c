@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 22:39:23 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/06 19:56:47 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/07 02:02:41 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ int main()
 {
     int r = 0;
     int s = 0;
-    char *j = NULL;
+    //char *j = NULL;
     // printf("n |%*c| plays %*c\n", 4, s, 4, r);
     // ft_printf("n |%*c| plays %*c\n", 4,s, 4, r);
     // printf("===================================================================================================\n");
-    s = ft_printf("|%6.3s|\n", j);
-    r =    printf("|%6.3s|\n", j);
+    s = ft_printf("|%*.3s|\n", -15, NULL);
+    r =    printf("|%*.3s|\n", -15, NULL);
     printf("\n%d\n%d\n\n", s, r);
   
     // r =    printf("|%*.*d|\n", -10, -10, -10);

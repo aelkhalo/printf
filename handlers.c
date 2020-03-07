@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 20:15:19 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/06 19:58:09 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/07 00:11:51 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,33 +138,54 @@ void        s_handler(pf *a, t_flags *b, va_list *ap)
     int ex;
     
     s = va_arg(*ap, char*);
-    if (!s)
-		s = "(null)";
     yes = 0;
     ex = 0;
+    if (!s)
+    {
+		s = "(null)";
+        ex = 1;
+    }
     val = ft_strlen(s);
-    if (b->wth.state == 1 && b->wth.value > b->prec.value && s)
+
+    if (b->wth.value < 0)
+        b->wth.value *= -1;
+    if (b->wth.state == 1 && val < b->prec.value && val < b->wth.value && b->prec.state == 1)
     {
         b->wth.value -= val;
         print_s_spaces(&(*a), &(*b));
     }
-    else if (b->wth.value > b->prec.value && b->prec.state)
+    else if (b->wth.state == 1 && val > b->prec.value && val < b->wth.value && b->prec.state == 0)
+    {
+        b->wth.value -= val;
+        print_s_spaces(&(*a), &(*b));
+    }
+    else if (b->wth.state == 1 && val == b->prec.value && val < b->wth.value && b->prec.state == 0)
+    {
+        b->wth.value += val;
+        print_s_spaces(&(*a), &(*b));
+    }
+    else if (b->wth.state == 1 && b->wth.value > b->prec.value && b->prec.state == 1)
+    {
+        b->wth.value -= b->prec.value ;
+        print_s_spaces(&(*a), &(*b));
+    }
+    else if (b->wth.value > b->prec.value && b->prec.state && b->wth.state == 1 && b->prec.state == 1)
     {
         b->wth.value -= b->prec.value;
         print_s_spaces(&(*a), &(*b));
     }
-    else if (b->wth.state && b->prec.value > b->wth.value && val <= b->prec.value)
+    else if (b->wth.state == 1 && b->prec.value > b->wth.value && val <= b->prec.value && b->prec.state == 1)
     {
         b->wth.value = 0;
         print_s_spaces(&(*a), &(*b));
     }
-    // if (b->wth.state == 1)
-    //     print_s_spaces(&(*a), &(*b));
    
     if (b->min.state && b->wth.value < val)
         b->wth.value = 0;
-    if (b->prec.value < val && b->prec.state)
+    if (b->prec.value < val && b->prec.state ){
         ft_putstr(s, b->prec.value, a);
+        b->wth.value -= val;
+        }
     else
     {
         ft_putstr(s, val, a);
