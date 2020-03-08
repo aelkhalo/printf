@@ -6,7 +6,7 @@
 /*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 15:07:08 by elkhaluffy        #+#    #+#             */
-/*   Updated: 2020/03/07 15:36:41 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/08 18:00:14 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void    check_d_norme(pf *a, t_flags *b, int val ,int i)
         b->wth.v -= b->prec.v;
         b->check.s = 1;
     }
-    if (b->wth.s == 1 && b->prec.v < b->wth.v)
+    if (b->wth.s == 1 && b->prec.v <= b->wth.v)
         check_d_hand(a, b, val, i);
     else if (b->wth.s && b->prec.v > b->wth.v && b->check.s == 1)
         check_d_hand1(a, b, val, i);

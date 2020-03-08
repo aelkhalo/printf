@@ -6,7 +6,7 @@
 /*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 16:09:37 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/07 16:09:52 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/08 20:19:25 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,10 @@ void    cal_lenght(pf *a, int val);
 void    perc_handler(pf *a, t_flags *b);
 void    check_perc_hand(pf *a, t_flags *b, int val, char s);
 void	ft_putperc(char s, pf *a);
+void    u_handler(pf *a, t_flags *b, va_list *ap);
+void    check_u_hand2(pf *a, t_flags *b, int val, int ex, unsigned int i);
+void	ft_u_putnbr(unsigned int nb);
+int		count_hex(unsigned long n, t_flags *b);
+void	ft_puthex(unsigned long n, int maj);
+void    check_x_hand2(pf *a, t_flags *b, int val, int ex, unsigned int i);
 #endif
