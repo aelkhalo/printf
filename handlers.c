@@ -6,7 +6,7 @@
 /*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 20:15:19 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/08 20:33:00 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/10 18:36:04 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,13 @@ void    d_handler(pf *a, t_flags *b, va_list *ap)
 
 void    cal_lenght(pf *a, int val)
 {
-    while (val != 1)
+    if (val > 1)
     {
-        a->lenght++;
-        val--;
+        while (val != 1)
+        {
+            a->lenght++;
+            val--;
+        }
     }
 }
 
@@ -114,10 +117,10 @@ void    x_handler(pf *a, t_flags *b, va_list *ap)
         a->lenght++;
     }
     val = count_hex(i ,b);
-    check_d_norme(a, b, val ,i);   
-    // if (yes && i > 0)
-    //     ft_putchar('-');
+    check_d_norme(a, b, val ,i);
     check_x_hand2(a, b, val, ex, i);
+    if (val == 0)
+        a->lenght--;
     cal_lenght(a, val);
 }
 
@@ -125,8 +128,11 @@ void    x_handler(pf *a, t_flags *b, va_list *ap)
 void    check_x_hand2(pf *a, t_flags *b, int val, int ex, unsigned int i)
 {
     int maj;
-
-    (*a->buff == 'x' ? maj = 0 : 1);
+    
+    if (*a->buff == 'x')
+        maj = 0;
+    else
+        maj = 1;
     if (val > b->prec.v && b->prec.v > 0 && b->wth.v == b->prec.v)
         b->wth.v = 0;
     else if (b->prec.v >= b->wth.v && b->wth.v > 0)
@@ -142,7 +148,7 @@ void    check_x_hand2(pf *a, t_flags *b, int val, int ex, unsigned int i)
         ex = 1;
         a->lenght--;
     }
-    else if (!ex)
+    else if (!ex && i != 0)
         ft_puthex(i, maj);
     if (b->wth.s == -1)
         print_spaces(&(*a), &(*b), val);
@@ -161,7 +167,7 @@ void    f_handler(pf *a, t_flags *b, va_list *ap)
         s_handler(&(*a), &(*b), ap);
     if (*(a->buff) == '%')
         perc_handler(&(*a), &(*b));
-    if (*(a->buff) == 'x' || *(a->buff) == 'x')
+    if (*(a->buff) == 'x' || *(a->buff) == 'X')
         x_handler(&(*a), &(*b), ap);
     // else if (*(a->buff) == 'p')
     // {

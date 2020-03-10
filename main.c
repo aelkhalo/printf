@@ -6,7 +6,7 @@
 /*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 22:39:23 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/08 20:33:20 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/10 19:00:33 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ int main()
 {
     int r = 0;
     int s = 0;
-    //char *j = NULL;
+    //char *j = "hello";
     // printf("n |%*c| plays %*c\n", 4, s, 4, r);
     // ft_printf("n |%*c| plays %*c\n", 4,s, 4, r);
     // printf("===================================================================================================\n");
-    s = ft_printf("|%x|\n", -16);
-    r =    printf("|%x|\n", -16);
+    s = ft_printf("|%-2.3X|\n", 10);
+    r =    printf("|%-2.3X|\n", 10);
     printf("\n%d\n%d\n\n", s, r);
   
     // r =    printf("|%*.*d|\n", -10, -10, -10);
