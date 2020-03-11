@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   u_handlers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 17:46:23 by elkhaluffy        #+#    #+#             */
-/*   Updated: 2020/03/08 17:47:04 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/10 22:10:54 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,6 @@ void    u_handler(pf *a, t_flags *b, va_list *ap)
     yes = 0;
     ex = 0;
     check_d_hand0(b, j);
-    if (i < 0 && (yes += 1 || 1))
-    {
-        if (b->wth.v == b->prec.v)
-            b->wth.v += 1;
-        i *= -1;
-        b->wth.v -= 1;
-        a->lenght++;
-    }
     val = count_int(i);
     check_d_norme(a, b, val ,i);   
     if (yes && i > 0)

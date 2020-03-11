@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_things.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 04:16:37 by elkhaluffy        #+#    #+#             */
-/*   Updated: 2020/03/07 16:47:29 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/10 22:07:51 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void    get_wth(pf *a, t_flags *b, va_list *ap)
             get_wth_dig(a, b);
     }
     if (b->wth.v < 0)
-        b->wth.s = -1;
+        b->wth.s = -1;  
 }
 
 void    get_zero(pf *a,t_flags *b, va_list *ap)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   d_handler.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 15:07:08 by elkhaluffy        #+#    #+#             */
-/*   Updated: 2020/03/08 18:00:14 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/11 02:17:44 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void    check_d_norme(pf *a, t_flags *b, int val ,int i)
 }
 void    check_d_hand0(t_flags *b, int i)
 {
-    if (b->min.s && i == 0 && b->prec.s)
-        b->wth.s = 1;
+    // if (b->min.s && i == 0 && b->prec.s)
+    //     b->wth.s = 1;
     if (b->min.v && i < 0 && b->prec.s && b->check.s < b->prec.v)
         b->zero.v += 1;
     if (b->wth.v < 0)
@@ -73,7 +73,14 @@ void    check_d_hand2(pf *a, t_flags *b, int val, int ex, int i)
         b->wth.v = 0;
     else if (b->prec.v >= b->wth.v && b->wth.v > 0)
         b->wth.v = 0;
-    if (b->prec.s == 1 && b->prec.v > val)
+    if (b->prec.s == 1 && b->prec.v > val && b->min.s && b->wth.s == -1)
+    {
+        b->zero.v = b->prec.v;
+        print_zeros(&(*a), &(*b), val);
+        b->prec.v -= val;
+        b->wth.v -= b->prec.v;
+    }
+    else if (b->prec.s == 1 && b->prec.v > val)
         print_zeros(&(*a), &(*b), val);
     else if (b->zero.s  && b->zero.v > val)
         print_zeros(&(*a), &(*b), val);

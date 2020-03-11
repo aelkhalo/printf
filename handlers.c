@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 20:15:19 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/10 18:36:04 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/11 02:36:36 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,24 +108,24 @@ void    x_handler(pf *a, t_flags *b, va_list *ap)
     yes = 0;
     ex = 0;
     check_d_hand0(b, j);
-    if (i < 0 && (yes += 1 || 1))
+    if (j < 0 && (yes += 1 || 1))
     {
         if (b->wth.v == b->prec.v)
             b->wth.v += 1;
-        i *= -1;
+        j *= -1;
         b->wth.v -= 1;
         a->lenght++;
     }
     val = count_hex(i ,b);
     check_d_norme(a, b, val ,i);
-    check_x_hand2(a, b, val, ex, i);
-    if (val == 0)
+    check_x_hand2(a, b, val, i);
+    if (val == 0 && b->prec.v)
         a->lenght--;
     cal_lenght(a, val);
 }
 
 
-void    check_x_hand2(pf *a, t_flags *b, int val, int ex, unsigned int i)
+void    check_x_hand2(pf *a, t_flags *b, int val, unsigned int i)
 {
     int maj;
     
@@ -141,15 +141,16 @@ void    check_x_hand2(pf *a, t_flags *b, int val, int ex, unsigned int i)
         print_zeros(&(*a), &(*b), val);
     else if (b->zero.s  && b->zero.v > val)
         print_zeros(&(*a), &(*b), val);
-    if (b->zero.v == 0 && i == 0 && b->prec.v == 0 && b->prec.s)
-    {
-        if (b->wth.v > 0)
-            b->wth.v++;
-        ex = 1;
-        a->lenght--;
-    }
-    else if (!ex && i != 0)
-        ft_puthex(i, maj);
+    // if (b->zero.v == 0 && i == 0 && b->prec.v == 0 && b->prec.s)
+    // {
+    //     if (b->wth.v > 0)
+    //         b->wth.v++;
+    //     ex = 1;
+    //     a->lenght--;
+    // }
+    ft_puthex(i, maj);
+    // else if (b->zero.v == 0 && i == 0 && b->zero.s)
+    //     ft_puthex(i, maj);
     if (b->wth.s == -1)
         print_spaces(&(*a), &(*b), val);
 }
@@ -170,7 +171,4 @@ void    f_handler(pf *a, t_flags *b, va_list *ap)
     if (*(a->buff) == 'x' || *(a->buff) == 'X')
         x_handler(&(*a), &(*b), ap);
     // else if (*(a->buff) == 'p')
-    // {
-    //     s = va_arg(*ap, char*);
-    // }
 }
