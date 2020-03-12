@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   x_handlers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 04:13:25 by elkhaluffy        #+#    #+#             */
-/*   Updated: 2020/03/12 04:58:50 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/12 21:27:11 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,6 @@ void    d_x_handler(pf *a, t_flags *b, unsigned int i)
     yes = 0;
     ex = 0;
     check_d_hand0(b, i);
-    if (i < 0 && (yes += 1 || 1))
-    {
-        if (b->wth.v == b->prec.v)
-            b->wth.v += 1;
-        i *= -1;
-        b->wth.v -= 1;
-        a->lenght++;
-    }
     val = count_int(i);
     check_d_norme(a, b, val ,i);   
     if (yes && i > 0)

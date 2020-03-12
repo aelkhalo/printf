@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 16:09:37 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/12 05:13:04 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/12 22:38:23 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,6 @@ void    d_x_handler(pf *a, t_flags *b, unsigned int i);
 void    check_x_hand0(t_flags *b, int i);
 void    x_handler(pf *a, t_flags *b, va_list *ap);
 void    p_handler(pf *a, t_flags *b, va_list *ap);
-void    check_p_hand2(pf *a, t_flags *b, int val, unsigned int i);
+void    check_p_hand2(pf *a, t_flags *b, int val, unsigned long long i);
 
 #endif

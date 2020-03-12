@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 20:15:19 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/12 05:32:06 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/12 22:37:53 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,26 +94,31 @@ void	ft_putnstr(char *s, int n)
 
 void    p_handler(pf *a, t_flags *b, va_list *ap)
 {
-    unsigned long i;
+    unsigned long long i;
     int val;
     int yes;
     int ex;
     
-    i = va_arg(*ap, unsigned long);
+    i = va_arg(*ap, unsigned long long);
     yes = 0;
     ex = 0;
-        check_x_hand0(b, i);
-        val = count_hex(i , 1) + 2 + (!i ? 1 : 0);
-        check_d_norme(a, b, val ,i);
-        ft_putnstr("0x", 2);
-        b->wth.v += 2;
-        check_p_hand2(a, b, val, i);
-        cal_lenght(a, val);
-        if (i == 0)
-            a->lenght--;
+    if (b->wth.v < 0)
+        b->wth.v *= -1;
+    if (i == 0)
+    {
+        b->wth.v++;
+        a->lenght--;
+    }
+    check_x_hand0(b, i);
+    val = count_hex(i , 1) + (!i ? 1 : 0);
+    val += 2;
+    check_d_norme(a, b, val ,i);
+    ft_putnstr("0x", 2);
+    check_p_hand2(a, b, val, i);
+    cal_lenght(a, val);
 }
 
-void    check_p_hand2(pf *a, t_flags *b, int val, unsigned int i)
+void    check_p_hand2(pf *a, t_flags *b, int val, unsigned long long i)
 {
     int ex;
     
