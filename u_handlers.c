@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   u_handlers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 17:46:23 by elkhaluffy        #+#    #+#             */
-/*   Updated: 2020/03/10 22:10:54 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2020/03/12 02:33:37 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void    u_handler(pf *a, t_flags *b, va_list *ap)
     int yes;
     int ex;
     
-    i = va_arg(*ap, int);
+    i = va_arg(*ap, unsigned int);
     j = va_arg(*ap, int);
     yes = 0;
     ex = 0;

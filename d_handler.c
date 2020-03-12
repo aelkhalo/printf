@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   d_handler.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 15:07:08 by elkhaluffy        #+#    #+#             */
-/*   Updated: 2020/03/11 02:17:44 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2020/03/12 03:32:38 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void    check_d_norme(pf *a, t_flags *b, int val ,int i)
 }
 void    check_d_hand0(t_flags *b, int i)
 {
-    // if (b->min.s && i == 0 && b->prec.s)
-    //     b->wth.s = 1;
     if (b->min.v && i < 0 && b->prec.s && b->check.s < b->prec.v)
         b->zero.v += 1;
     if (b->wth.v < 0)

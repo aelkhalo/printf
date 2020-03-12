@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 16:09:37 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/11 02:28:04 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2020/03/12 05:13:04 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct t_flags
 void	ft_putchar(char c);
 size_t	ft_strlen(const char *s);
 void	ft_putstr(char *str , int val, pf *a);
+void	ft_putnstr(char *s, int n);
 int     ft_printf(const char *str, ...);
 void	ft_putnbr(int nb);
 void    ft_handler(va_list *ap, pf *st);
@@ -76,7 +77,15 @@ void	ft_putperc(char s, pf *a);
 void    u_handler(pf *a, t_flags *b, va_list *ap);
 void    check_u_hand2(pf *a, t_flags *b, int val, int ex, unsigned int i);
 void	ft_u_putnbr(unsigned int nb);
-int		count_hex(unsigned long n, t_flags *b);
+//int		count_hex(unsigned long n, t_flags *b);
+int		count_hex(unsigned long n, int b);
 void	ft_puthex(unsigned long n, int maj);
 void    check_x_hand2(pf *a, t_flags *b, int val, unsigned int i);
+void    check_x_hand3(pf *a, t_flags *b, int val);
+void    d_x_handler(pf *a, t_flags *b, unsigned int i);
+void    check_x_hand0(t_flags *b, int i);
+void    x_handler(pf *a, t_flags *b, va_list *ap);
+void    p_handler(pf *a, t_flags *b, va_list *ap);
+void    check_p_hand2(pf *a, t_flags *b, int val, unsigned int i);
+
 #endif

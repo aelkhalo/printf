@@ -6,18 +6,18 @@
 /*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 19:58:34 by elkhaluffy        #+#    #+#             */
-/*   Updated: 2020/03/08 20:15:42 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/12 05:27:59 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		count_hex(unsigned long n, t_flags *b)
+int		count_hex(unsigned long n, int b)
 {
 	int i;
 
 	i = 0;
-	if (!n && !b->prec.s)
+	if (!n && b)
 		i++;
 	while (n > 15)
 	{

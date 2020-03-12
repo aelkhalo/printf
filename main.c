@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 22:39:23 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/11 02:35:34 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2020/03/12 05:31:53 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@ int main()
 {
     int r = 0;
     int s = 0;
-    //char *j = "hello";
+    // char *j = "hello jsjs";
+    //char *k = "whats up nigga ist mnslmsjsnsnnssjsjsj jsjsjsjj kkkn  jsjshshsh k nnsks k j ";
     // printf("n |%*c| plays %*c\n", 4, s, 4, r);
     // ft_printf("n |%*c| plays %*c\n", 4,s, 4, r);
     // printf("===================================================================================================\n");
-    s = ft_printf("|%.0x|\n", 0);
-    r =    printf("|%.0x|\n", 0);
+    s = ft_printf("|%p|\n", (void *)0x100);
+    r =    printf("|%p|\n", (void *)0x100);
     printf("\n%d\n%d\n\n", s, r);
   
     // r =    printf("|%*.*d|\n", -10, -10, -10);
