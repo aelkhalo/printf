@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   x_handlers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 04:13:25 by elkhaluffy        #+#    #+#             */
-/*   Updated: 2020/03/12 21:27:11 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2020/03/13 07:53:44 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,11 @@ void    check_x_hand3(pf *a, t_flags *b, int val)
         b->wth.v -= b->prec.v;
     }
     else if (b->prec.s == 1 && b->prec.v > val)
+    {
         print_zeros(&(*a), &(*b), val);
+        b->prec.v -= val;
+        b->wth.v -= b->prec.v;
+    }
     else if (b->zero.s  && b->zero.v > val)
         print_zeros(&(*a), &(*b), val);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 20:15:19 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/12 22:37:53 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2020/03/13 07:24:32 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ void    perc_handler(pf *a, t_flags *b)
         b->zero.v = b->wth.v;
         print_zeros(&(*a), &(*b), val);
         b->wth.v = 0;
+    }
+    else if (b->zero.s == 1 && b->zero.v > 0 && b->prec.v == 0)
+    {
+        print_zeros(&(*a), &(*b), val);
+        b->prec.v -= val;
+        b->wth.v -= b->prec.v;
     }
     if (b->wth.s == 1)
         print_spaces(&(*a), &(*b), val);

@@ -6,7 +6,7 @@
 /*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 15:07:08 by elkhaluffy        #+#    #+#             */
-/*   Updated: 2020/03/12 03:32:38 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/13 07:03:09 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,11 @@ void    check_d_hand2(pf *a, t_flags *b, int val, int ex, int i)
         b->wth.v -= b->prec.v;
     }
     else if (b->prec.s == 1 && b->prec.v > val)
+    {
         print_zeros(&(*a), &(*b), val);
+        b->prec.v -= val;
+        b->wth.v -= b->prec.v;
+    }
     else if (b->zero.s  && b->zero.v > val)
         print_zeros(&(*a), &(*b), val);
     if (b->zero.v == 0 && i == 0 && b->prec.v == 0 && b->prec.s)

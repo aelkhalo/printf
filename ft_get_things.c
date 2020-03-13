@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_things.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 04:16:37 by elkhaluffy        #+#    #+#             */
-/*   Updated: 2020/03/10 22:07:51 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2020/03/13 07:49:04 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void    get_wth_min(pf *a, t_flags *b, va_list *ap)
         }
         else if (ft_isalpha(*a->buff))
             a->buff--;
-        // else if (*a->buff == '.')
-        //     b->wth.s = 2;
     }
 }
 
@@ -99,8 +97,6 @@ void    get_zero(pf *a,t_flags *b, va_list *ap)
         else if (ft_isalpha(*a->buff))
             a->buff--;
     }
-    if (b->zero.v == 0)
-        b->prec.s = 1;
 }
 
 void    get_prec(pf *a, t_flags *b, va_list *ap)

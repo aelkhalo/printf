@@ -6,7 +6,7 @@
 /*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 14:32:28 by elkhaluffy        #+#    #+#             */
-/*   Updated: 2020/03/07 15:35:03 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/13 08:17:14 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void    check_s_hand(pf *a, t_flags *b, int val)
 
 void    check_s_hand2(pf *a, t_flags *b, int val, char *s)
 {
-    if (b->min.s && b->wth.v < val)
-        b->wth.v = 0;    
     if (b->prec.v < val && b->prec.s == 1)
     {
         ft_putstr(s, b->prec.v, a);

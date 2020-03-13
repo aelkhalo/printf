@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 16:09:37 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/12 22:38:23 by aelkhalo         ###   ########.fr       */
+/*   Updated: 2020/03/13 08:17:02 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	ft_putperc(char s, pf *a);
 void    u_handler(pf *a, t_flags *b, va_list *ap);
 void    check_u_hand2(pf *a, t_flags *b, int val, int ex, unsigned int i);
 void	ft_u_putnbr(unsigned int nb);
-//int		count_hex(unsigned long n, t_flags *b);
 int		count_hex(unsigned long n, int b);
 void	ft_puthex(unsigned long n, int maj);
 void    check_x_hand2(pf *a, t_flags *b, int val, unsigned int i);
