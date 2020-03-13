@@ -6,7 +6,7 @@
 /*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 20:15:19 by aelkhalo          #+#    #+#             */
-/*   Updated: 2020/03/13 07:24:32 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/13 19:48:18 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void    d_handler(pf *a, t_flags *b, va_list *ap)
     check_d_norme(a, b, val ,i);   
     if (yes && i > 0)
         ft_putchar('-');
-    check_d_hand2(a, b, val, ex, i);
+    check_d_hand2(a, b, val, yes, i);
     cal_lenght(a, val);
 }
 

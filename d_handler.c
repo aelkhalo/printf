@@ -6,7 +6,7 @@
 /*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 15:07:08 by elkhaluffy        #+#    #+#             */
-/*   Updated: 2020/03/13 07:03:09 by elkhaluffy       ###   ########.fr       */
+/*   Updated: 2020/03/13 19:49:24 by elkhaluffy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,11 @@ void    check_d_hand1(pf *a, t_flags *b, int val, int i)
     b->zero.v = b->prec.v;
 }
 
-void    check_d_hand2(pf *a, t_flags *b, int val, int ex, int i)
+void    check_d_hand2(pf *a, t_flags *b, int val, int yes, int i)
 {
+    int ex;
+
+    ex = 0;
     if (val > b->prec.v && b->prec.v > 0 && b->wth.v == b->prec.v)
         b->wth.v = 0;
     else if (b->prec.v >= b->wth.v && b->wth.v > 0)
@@ -95,6 +98,14 @@ void    check_d_hand2(pf *a, t_flags *b, int val, int ex, int i)
     }
     else if (!ex)
         ft_putnbr(i);
+    if (b->wth.s == 0 && b->wth.v == 0 && b->zero.s && b->zero.v < 0)
+    {
+        b->zero.v *= -1;
+        if (yes)
+            b->zero.v -= val;
+        b->wth.v = b->zero.v;
+        b->wth.s = -1;
+    }
     if (b->wth.s == -1)
         print_spaces(&(*a), &(*b), val);
 }
