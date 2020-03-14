@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/13 07:49:37 by elkhaluffy        #+#    #+#             */
-/*   Updated: 2020/03/13 07:51:15 by elkhaluffy       ###   ########.fr       */
+/*   Created: 2020/03/14 01:46:04 by aelkhalo          #+#    #+#             */
+/*   Updated: 2020/03/14 01:48:48 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_atoi(const char *str)
+int		ft_atoi(const char *str)
 {
 	int		i;
 	int		signe;
@@ -61,7 +61,7 @@ void	ft_u_putnbr(unsigned int nb)
 {
 	unsigned int n;
 
-		n = nb;
+	n = nb;
 	if (n >= 10)
 		ft_putnbr(n / 10);
 	ft_putchar(n % 10 + '0');

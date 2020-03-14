@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   x_utils.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/08 19:58:34 by elkhaluffy        #+#    #+#             */
-/*   Updated: 2020/03/12 05:27:59 by elkhaluffy       ###   ########.fr       */
+/*   Created: 2020/03/14 01:46:56 by aelkhalo          #+#    #+#             */
+/*   Updated: 2020/03/14 01:49:08 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,25 @@ void	ft_puthex(unsigned long n, int maj)
 	i--;
 	while (i >= 0)
 		write(1, &number[i--], 1);
+}
+
+void	ft_putnstr(char *s, int n)
+{
+	int i;
+
+	i = 0;
+	while (i < n)
+		write(1, &s[i++], 1);
+}
+
+void	cal_lenght(t_pf *a, int val)
+{
+	if (val > 1)
+	{
+		while (val != 1)
+		{
+			a->lenght++;
+			val--;
+		}
+	}
 }

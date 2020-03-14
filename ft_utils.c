@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elkhaluffy <elkhaluffy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: aelkhalo <aelkhalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/22 00:52:27 by elkhaluffy        #+#    #+#             */
-/*   Updated: 2020/03/13 07:47:49 by elkhaluffy       ###   ########.fr       */
+/*   Created: 2020/03/14 01:46:13 by aelkhalo          #+#    #+#             */
+/*   Updated: 2020/03/14 01:48:34 by aelkhalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		count_int(unsigned int n)
 	return (i);
 }
 
-int	ft_isalpha(int c)
+int		ft_isalpha(int c)
 {
 	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 		return (1);
@@ -35,7 +35,7 @@ int	ft_isalpha(int c)
 		return (0);
 }
 
-int	ft_isdigit(int c)
+int		ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
@@ -48,7 +48,7 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_putstr(char *str , int val , pf *a)
+void	ft_putstr(char *str, int val, t_pf *a)
 {
 	int i;
 
